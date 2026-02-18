@@ -203,6 +203,7 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 12px;
+    margin-top: 60px;
 }
 
 #character.hidden {
@@ -616,3 +617,4 @@ body {
     }
 
 }
+
