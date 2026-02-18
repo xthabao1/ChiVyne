@@ -141,6 +141,7 @@ body {
     z-index: 10;
     position: relative;
     padding: 20px;
+    margin-top: -60px;
 }
 
 /* ===== TEXT WRAPPER ===== */
@@ -613,4 +614,5 @@ body {
     100% {
         transform: translateY(-16px) rotate(2deg);
     }
+
 }
