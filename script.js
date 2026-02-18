@@ -1,5 +1,5 @@
 // ===== CONFETTI =====
-const confettiColors = ['#FFD700', '#FF4500', '#FF69B4', '#00FF7F', '#FF1493', '#FFA500', '#FF6347', '#DA70D6'];
+const confettiColors = ['#FFD700', '#FF4500', '#E67E22', '#C0392B', '#F1C40F', '#FF6B35', '#FFB300', '#E74C3C'];
 
 function createConfetti() {
     const container = document.getElementById('confetti-container');
@@ -63,7 +63,7 @@ class Particle {
 }
 
 let particles = [];
-const fwColors = ['#FFD700', '#FF4500', '#FF69B4', '#FFA500', '#FF1493', '#FFFFFF', '#FFB6C1'];
+const fwColors = ['#FFD700', '#FF4500', '#E67E22', '#F1C40F', '#FF6B35', '#FFFFFF', '#FFB300'];
 
 function launchFirework() {
     const x = Math.random() * canvas.width;
@@ -154,4 +154,15 @@ function showFloatingQRs() {
 window.onload = function () {
     setTimeout(typeWriter, 600);
 };
-
+// ===== GOLD COINS =====
+function createGoldCoin() {
+    const coin = document.createElement('div');
+    coin.className = 'gold-coin';
+    coin.textContent = ['🪙', '💛', '⭐', '✨'][Math.floor(Math.random() * 4)];
+    coin.style.left = Math.random() * 100 + 'vw';
+    coin.style.animationDuration = (Math.random() * 5 + 5) + 's';
+    coin.style.animationDelay = Math.random() * 2 + 's';
+    document.body.appendChild(coin);
+    setTimeout(() => coin.remove(), 9000);
+}
+setInterval(createGoldCoin, 600);
