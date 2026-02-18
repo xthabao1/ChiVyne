@@ -1,0 +1,616 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 50%, #FF1493 100%);
+    font-family: 'Quicksand', 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ===== FIREWORKS CANVAS ===== */
+#fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ===== CONFETTI ===== */
+#confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 14px;
+    border-radius: 2px;
+    animation: confettiFall linear infinite;
+    opacity: 0.85;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* ===== DECORATIVE FLOWERS ===== */
+.flower {
+    position: fixed;
+    font-size: 2rem;
+    animation: floatFlower 4s ease-in-out infinite alternate;
+    z-index: 1;
+    filter: drop-shadow(0 2px 6px rgba(255, 20, 147, 0.4));
+}
+
+.flower-1 {
+    top: 5%;
+    left: 3%;
+    animation-delay: 0s;
+}
+
+.flower-2 {
+    top: 8%;
+    right: 4%;
+    animation-delay: 0.5s;
+}
+
+.flower-3 {
+    bottom: 10%;
+    left: 5%;
+    animation-delay: 1s;
+}
+
+.flower-4 {
+    bottom: 8%;
+    right: 3%;
+    animation-delay: 1.5s;
+}
+
+@keyframes floatFlower {
+    0% {
+        transform: translateY(0) rotate(-10deg) scale(1);
+    }
+
+    100% {
+        transform: translateY(-15px) rotate(10deg) scale(1.1);
+    }
+}
+
+/* ===== LANTERNS ===== */
+.lantern {
+    position: fixed;
+    font-size: 3.5rem;
+    top: 0;
+    animation: swingLantern 3s ease-in-out infinite alternate;
+    z-index: 2;
+    filter: drop-shadow(0 4px 12px rgba(255, 69, 0, 0.5));
+}
+
+.lantern-left {
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.lantern-right {
+    right: 8%;
+    animation-delay: 0.8s;
+}
+
+@keyframes swingLantern {
+    0% {
+        transform: rotate(-12deg) translateY(0);
+    }
+
+    100% {
+        transform: rotate(12deg) translateY(8px);
+    }
+}
+
+/* ===== PAGE LAYOUT ===== */
+.page-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    z-index: 10;
+    position: relative;
+    padding: 20px;
+}
+
+/* ===== TEXT WRAPPER ===== */
+#text-wrapper {
+    background: rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 24px;
+    padding: 28px 50px;
+    box-shadow: 0 8px 32px rgba(255, 20, 147, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    animation: glowPulse 2.5s ease-in-out infinite alternate;
+    text-align: center;
+}
+
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 8px 32px rgba(255, 20, 147, 0.3), 0 0 20px rgba(255, 182, 193, 0.3);
+    }
+
+    100% {
+        box-shadow: 0 8px 48px rgba(255, 20, 147, 0.6), 0 0 50px rgba(255, 182, 193, 0.5);
+    }
+}
+
+#text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.6em;
+    color: #8B0000;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 69, 0, 0.3);
+    min-height: 1.5em;
+}
+
+#cursor {
+    font-size: 2.6em;
+    color: #FF4500;
+    animation: blink 0.7s step-end infinite;
+    font-family: 'Dancing Script', cursive;
+    vertical-align: bottom;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ===== CHARACTER SECTION ===== */
+#character {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+#character.hidden {
+    display: none;
+}
+
+#character.show-up {
+    display: flex;
+    animation: bounceIn 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0) translateY(60px);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.1) translateY(-10px);
+        opacity: 1;
+    }
+
+    80% {
+        transform: scale(0.96) translateY(4px);
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ===== CHAR WRAPPER — nhân vật + QR overlay ===== */
+.char-wrapper {
+    position: relative;
+    display: inline-block;
+    animation: charFloat 3s ease-in-out infinite alternate;
+}
+
+@keyframes charFloat {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(-12px);
+    }
+}
+
+#char-img {
+    width: 260px;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.25));
+}
+
+/* ===== QR OVERLAY ===== */
+/* 
+   char_2.png: thẻ QR nằm ở giữa-dưới, hơi lệch phải
+   Overlay qr_1.png lên đúng vùng thẻ
+*/
+#qr-overlay {
+    position: absolute;
+    bottom: 4%;
+    left: 50%;
+    transform: translateX(-5%);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    animation: qrPulse 2s ease-in-out infinite alternate;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes qrPulse {
+    0% {
+        transform: scale(1) rotate(-2deg);
+    }
+
+    100% {
+        transform: scale(1.05) rotate(2deg);
+    }
+}
+
+#qr-img {
+    width: 100%;
+    height: auto;
+    border: 4px solid white;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    background: white;
+}
+
+/* Khi không có qr.png */
+#qr-overlay.qr-missing #qr-img {
+    display: none;
+}
+
+#qr-overlay.qr-missing::before {
+    content: '📱';
+    font-size: 3rem;
+    display: block;
+}
+
+.qr-scan-hint {
+    background: rgba(255, 69, 0, 0.9);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    animation: hintBlink 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes hintBlink {
+    0% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* ===== SPEECH BUBBLE ===== */
+#speech {
+    position: absolute;
+    top: 10px;
+    left: calc(100% + 10px);
+    background: white;
+    border: 3px solid #FF4500;
+    border-radius: 20px;
+    padding: 14px 22px;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #FF1493;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(255, 69, 0, 0.3);
+    z-index: 20;
+    min-width: 200px;
+    text-align: center;
+}
+
+#speech.hidden {
+    display: none;
+}
+
+#speech.show-up {
+    display: block;
+    animation: popIn 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.speech-tail {
+    position: absolute;
+    left: -18px;
+    top: 24px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 18px solid #FF4500;
+}
+
+.speech-tail::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: -8px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 14px solid white;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    #text {
+        font-size: 1.7em;
+    }
+
+    #cursor {
+        font-size: 1.7em;
+    }
+
+    #text-wrapper {
+        padding: 20px 28px;
+    }
+
+    #char-img {
+        width: 200px;
+    }
+
+    #speech {
+        font-size: 0.9em;
+        top: auto;
+        bottom: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .speech-tail {
+        display: none;
+    }
+
+    .lantern {
+        font-size: 2.5rem;
+    }
+
+    .floating-qr {
+        width: 120px !important;
+    }
+}
+
+/* ===== FLOATING QR CODES ===== */
+.floating-qr {
+    position: fixed;
+    width: 160px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 10px 10px 8px;
+    box-shadow: 0 8px 24px rgba(255, 20, 147, 0.25), 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.floating-qr.hidden {
+    display: none;
+}
+
+.floating-qr img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
+.floating-qr .qr-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #FF1493;
+    white-space: nowrap;
+    background: rgba(255, 20, 147, 0.1);
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+/* Vị trí 4 góc */
+.qr-tl {
+    top: 12%;
+    left: 2%;
+    animation: floatQR-tl 4s ease-in-out infinite alternate;
+}
+
+.qr-tr {
+    top: 12%;
+    right: 2%;
+    animation: floatQR-tr 4.5s ease-in-out infinite alternate;
+}
+
+.qr-bl {
+    bottom: 5%;
+    left: 2%;
+    animation: floatQR-bl 3.8s ease-in-out infinite alternate;
+}
+
+.qr-br {
+    bottom: 5%;
+    right: 2%;
+    animation: floatQR-br 4.2s ease-in-out infinite alternate;
+}
+
+/* Entrance animation */
+.floating-qr.show-up {
+    display: flex;
+}
+
+.floating-qr.show-up.qr-tl {
+    animation: enterTL 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards, floatQR-tl 4s 0.6s ease-in-out infinite alternate;
+}
+
+.floating-qr.show-up.qr-tr {
+    animation: enterTR 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards, floatQR-tr 4.5s 0.6s ease-in-out infinite alternate;
+}
+
+.floating-qr.show-up.qr-bl {
+    animation: enterBL 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards, floatQR-bl 3.8s 0.6s ease-in-out infinite alternate;
+}
+
+.floating-qr.show-up.qr-br {
+    animation: enterBR 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards, floatQR-br 4.2s 0.6s ease-in-out infinite alternate;
+}
+
+/* Entrance keyframes */
+@keyframes enterTL {
+    from {
+        transform: translate(-60px, -60px) scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes enterTR {
+    from {
+        transform: translate(60px, -60px) scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes enterBL {
+    from {
+        transform: translate(-60px, 60px) scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes enterBR {
+    from {
+        transform: translate(60px, 60px) scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Float keyframes — mỗi góc xoay nhẹ khác nhau */
+@keyframes floatQR-tl {
+    0% {
+        transform: translateY(0px) rotate(-3deg);
+    }
+
+    100% {
+        transform: translateY(-14px) rotate(3deg);
+    }
+}
+
+@keyframes floatQR-tr {
+    0% {
+        transform: translateY(0px) rotate(3deg);
+    }
+
+    100% {
+        transform: translateY(-18px) rotate(-3deg);
+    }
+}
+
+@keyframes floatQR-bl {
+    0% {
+        transform: translateY(0px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateY(-12px) rotate(-4deg);
+    }
+}
+
+@keyframes floatQR-br {
+    0% {
+        transform: translateY(0px) rotate(-4deg);
+    }
+
+    100% {
+        transform: translateY(-16px) rotate(2deg);
+    }
+}

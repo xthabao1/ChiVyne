@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Năm Mới Bính Ngọ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Confetti container -->
+    <div id="confetti-container"></div>
+
+    <!-- Pháo hoa -->
+    <canvas id="fireworks"></canvas>
+
+    <!-- Đèn lồng -->
+    <div class="lantern lantern-left">🏮</div>
+    <div class="lantern lantern-right">🏮</div>
+
+    <!-- Hoa trang trí -->
+    <div class="flower flower-1">🌸</div>
+    <div class="flower flower-2">🌺</div>
+    <div class="flower flower-3">🌸</div>
+    <div class="flower flower-4">🌺</div>
+
+    <!-- QR nổi xung quanh -->
+    <div class="floating-qr qr-bl hidden" id="fqr3">
+        <img src="qr_1.png" alt="QR Lì Xì">
+        <div class="qr-label">📱 Quét lì xì</div>
+    </div>
+    <div class="floating-qr qr-br hidden" id="fqr4">
+        <img src="qr_1.png" alt="QR Lì Xì">
+        <div class="qr-label">📱 Quét lì xì</div>
+    </div>
+
+    <div class="page-layout">
+        <!-- Text chính -->
+        <div id="text-wrapper">
+            <div id="text"></div>
+            <span id="cursor">|</span>
+        </div>
+
+        <!-- Nhân vật + QR overlay -->
+        <div id="character" class="hidden">
+            <div class="char-wrapper">
+                <!-- Ảnh nhân vật gốc -->
+                <img id="char-img" src="char_3.png" alt="Nhân vật chibi">
+            </div>
+
+            <!-- Bong bóng thoại -->
+            <div id="speech" class="hidden">
+                <span>Lì xì đi đừng ngại 🥰</span>
+                <div class="speech-tail"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
