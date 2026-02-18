@@ -92,7 +92,7 @@ setTimeout(launchFirework, 1000);
 const textElement = document.getElementById('text');
 const cursorElement = document.getElementById('cursor');
 
-const fullText = "🎊 Chúc cả nhà 🎊\nMột năm Bính Ngọ\nmạnh khỏe, hạnh phúc 🐴\nVạn sự như ý, triệu sự như mơ\ntrăm sự bất ngờ, hàng giờ hạnh phúc 🤗";
+const fullText = "🎊 Chúc cả nhà 🎊\nMột năm Bính Ngọ\nmạnh khỏe, hạnh phúc 🐴\nVạn sự như ý, triệu sự như mơ\ntrăm sự bất ngờ, hàng giờ hạnh phúc 🎉🎊";
 let i = 0;
 
 function typeWriter() {
@@ -154,3 +154,4 @@ function showFloatingQRs() {
 window.onload = function () {
     setTimeout(typeWriter, 600);
 };
+
